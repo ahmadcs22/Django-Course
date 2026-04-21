@@ -1,0 +1,15 @@
+# Ignore virtual environment
+venv/
+env/
+.venv/
+
+# Ignore specific files
+outline.pdf
+ouline.docx
+
+# Optional: ignore Python cache files
+__pycache__/
+*.pyc
+
+# Optional: ignore environment variables
+.env
