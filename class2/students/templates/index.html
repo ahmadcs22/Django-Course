@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Basic Frontend</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        input { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        button { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
+        .btn-delete { background: #dc3545; padding: 5px 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Add New Student</h2>
+    <div class="card">
+        <input type="text" id="first_name" placeholder="First Name">
+        <input type="text" id="last_name" placeholder="Last Name">
+        <input type="text" id="roll_number" placeholder="Roll Number (e.g., FA23-001)">
+        <input type="email" id="email" placeholder="Email">
+        <button onclick="addStudent()">Add Student</button>
+    </div>
+
+    <h2>Student Records</h2>
+    <div id="student-list">
+        </div>
+
+    <script>
+        const API_URL = '/api/students/';
+
+        // --- NEW: Function to get the CSRF token from the browser ---
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        // Grab the token before we make any requests
+        const csrftoken = getCookie('csrftoken');
+        // -----------------------------------------------------------
+
+        // 1. READ: Fetch records from the database and show them
+        async function fetchStudents() {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            const listDiv = document.getElementById('student-list');
+            listDiv.innerHTML = ''; // Clear current list
+
+            data.forEach(student => {
+                listDiv.innerHTML += `
+                    <div class="card">
+                        <strong>${student.first_name} ${student.last_name}</strong> (${student.roll_number})<br>
+                        Email: ${student.email} <br>
+                        <button class="btn-delete" onclick="deleteStudent(${student.id})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        // 2. CREATE: Send new data to the database
+        async function addStudent() {
+            const studentData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                roll_number: document.getElementById('roll_number').value,
+                email: document.getElementById('email').value
+            };
+
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken  // <-- NEW: Sending the security token!
+                },
+                body: JSON.stringify(studentData)
+            });
+
+            if (response.ok) {
+                // Clear inputs and refresh the list
+                document.querySelectorAll('input').forEach(input => input.value = '');
+                fetchStudents();
+            } else {
+                alert("Error adding student. Make sure Roll Number and Email are unique!");
+            }
+        }
+
+        // 3. DELETE: Remove a record from the database
+        async function deleteStudent(id) {
+            const response = await fetch(`${API_URL}${id}/`, { 
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrftoken // <-- NEW: Security token needed for delete too!
+                }
+            });
+            if (response.ok) {
+                fetchStudents(); // Refresh the list
+            }
+        }
+
+        // Load students when the page opens
+        fetchStudents();
+    </script>
+</body>
+</html>

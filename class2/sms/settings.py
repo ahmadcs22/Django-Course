@@ -56,7 +56,7 @@ ROOT_URLCONF = "sms.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -69,6 +69,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "sms.wsgi.application"
+import os 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Database
