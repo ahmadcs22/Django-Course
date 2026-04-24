@@ -25,7 +25,7 @@ def student_list_create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# 2. GET, PUT (Update), or DELETE a specific single student
+# 2. GET, PUT (Update), or DELETE a specific single student ok
 @api_view(['GET', 'PUT', 'DELETE'])
 def student_detail(request, pk):
     try:
