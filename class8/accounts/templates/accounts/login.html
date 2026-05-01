@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc;">
+    <h2>FYP Hub Login</h2>
+    
+    <!-- Display Error Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Login Form -->
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+        <label>Username:</label><br>
+        <input type="text" name="username" required style="width: 100%; margin-bottom: 10px;"><br>
+        
+        <label>Password:</label><br>
+        <input type="password" name="password" required style="width: 100%; margin-bottom: 20px;"><br>
+        
+        <button type="submit" style="width: 100%; padding: 10px; background: #004d40; color: white; border: none;">
+            Sign In
+        </button>
+    </form>
+</div>
+{% endblock %}
