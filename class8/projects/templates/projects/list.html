@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>All Final Year Projects</h2>
+    
+    <ul>
+        {% for project in projects %}
+            <li>
+                <strong>{{ project.title }}</strong> 
+                <br>
+                <small>Lead by: {{ project.lead_student.name }}</small>
+            </li>
+        {% empty %}
+            <p>No projects found.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
