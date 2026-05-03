@@ -1,0 +1,74 @@
+FYP Hub: 10-Day Django Web Development Bootcamp
+Instructor: Ahmad Siraj
+Course Completion Summary
+
+Congratulations on successfully completing the 10-Day Django Web Development Bootcamp! Over the past two weeks, you have transformed from learning the basics of web architecture to deploying a fully functional, secure, and multi-relational Final Year Project platform.
+
+Below is a summary of the core concepts and technologies you have mastered:
+
+--- COURSE CONTENT & MODULES ---
+
+Day 1: Introduction to Django & MVT Architecture
+- Understanding the difference between Frontend, Backend, and Databases.
+- Introduction to the Model-View-Template (MVT) architecture.
+- Setting up a Python virtual environment and installing Django.
+- Creating the first Django project and starting the development server.
+
+Day 2: Apps, Views, and URL Routing
+- Creating the 'students' and 'projects' applications.
+- Writing your first Python view functions.
+- Understanding URL configurations and mapping URLs to views.
+
+Day 3: Django Models & The Database (SQLite)
+- Introduction to Relational Databases and ORM (Object-Relational Mapping).
+- Creating the Student and Project models.
+- Running makemigrations and migrate commands.
+- Registering models in the Django Admin panel.
+
+Day 4: Django Templates & DTL (Django Template Language)
+- Rendering HTML files from views using context dictionaries.
+- Using DTL tags: {% for %}, {% if %}, and {{ variables }}.
+- Template inheritance: Creating a base.html layout and extending it.
+
+Day 5: Static Files & Styling (CSS/JS)
+- Configuring STATIC_URL and STATICFILES_DIRS.
+- Loading static files in templates using {% load static %}.
+- Adding custom CSS to style the dashboard and lists.
+
+Day 6: Forms & Data Submission
+- Creating HTML forms to accept user input (POST requests).
+- Implementing {% csrf_token %} for security.
+- Handling form data in views using request.POST.get().
+- Saving new records to the database.
+
+Day 7: Advanced Database Relationships
+- Understanding Foreign Keys (One-to-Many relationships).
+- Implementing ManyToMany fields (e.g., Students and Skills).
+- Using Reverse Lookups (student.project_set.all()) in templates.
+- Querying multiple models efficiently.
+
+Day 8: Authentication & Security (Sessions)
+- Creating a dedicated 'accounts' app for user management.
+- Implementing secure login and logout using Django's built-in auth system.
+- Protecting sensitive views using the @login_required decorator.
+- Displaying dynamic messages using the Django Messages framework.
+
+Day 9: The FYP Polish (Search & Analytics)
+- Building complex search functionality using Django Q Objects.
+- Combining queries to search across multiple fields (e.g., Name OR Roll Number).
+- Implementing dashboard analytics and statistics using ORM .count().
+- Integrating advanced, modern UI designs (e.g., Glassmorphism login page).
+
+Day 10: Production Deployment & Secrets Management
+- Securing sensitive data using .env files and python-dotenv.
+- Configuring settings.py for production (DEBUG=False, ALLOWED_HOSTS).
+- Serving static files in production using Whitenoise.
+- Generating requirements.txt.
+- Deploying the full application live on PythonAnywhere.
+
+--- NEXT STEPS FOR YOUR FYP ---
+- Apply for the GitHub Student Developer Pack to claim your free domain name.
+- Connect your new domain to your live PythonAnywhere server.
+- Continue expanding your database models to fit your specific project requirements.
+
+Thank you for your hard work and dedication. Keep building!
